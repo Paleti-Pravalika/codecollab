@@ -16,13 +16,23 @@ const checkId = (req, res, next) => {
   next();
 };
 
-// Get all my projects
+// Get all my projects, with the first lines of code for the dashboard cards
 router.get("/", async (req, res) => {
   try {
     const projects = await Project.find({ owner: req.userId })
-      .select("name language updatedAt")
-      .sort({ updatedAt: -1 });
-    res.json(projects);
+      .select("name language updatedAt code")
+      .sort({ updatedAt: -1 })
+      .lean();
+
+    res.json(
+      projects.map(({ code, ...rest }) => ({
+        ...rest,
+        preview: (code || "")
+          .split("\n")
+          .slice(0, 8)
+          .map((line) => line.slice(0, 80)),
+      }))
+    );
   } catch {
     res.status(500).json({ message: "Server error" });
   }
