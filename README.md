@@ -2,7 +2,15 @@
 
 A real-time collaborative code editor. Write and run Python or JavaScript in the browser, share a link, and code together with other people in the same file at the same time.
 
-**Live demo:** coming soon
+**Live demo:** https://codecollab-zeta.vercel.app
+
+> The backend runs on a free plan and sleeps when idle, so the first load can take up to a minute. To try live collaboration, sign up with two accounts (use an incognito window for the second), open the same project in both, and type.
+
+## Screenshots
+
+![Dashboard](docs/dashboard.png)
+![Editor with live collaborators](docs/editor.png)
+![Login](docs/login.png)
 
 ## Features
 
